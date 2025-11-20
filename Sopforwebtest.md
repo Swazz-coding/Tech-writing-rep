@@ -1,10 +1,8 @@
 # Standard Operating Procedure: Setup a Virtual Linux Server for Web Application Test
 
-**Organization:** G3Company IT Operations  
-**Department:** Systems Administration  
-**Phone:** +1 (204) 555-1234  
-**Document Owner:** Swathi Anil  
-**Email:** swathi.anil@sanil.g3company.site  
+**g3company**  
+**IT Operations Department**  
+**Phone:** +1 (437) 878-4117  
 
 ---
 
@@ -18,135 +16,156 @@
 
 ## Approval Table
 
-| Role          | Name               | Email                      | Status     | Date       |
-|---------------|--------------------|----------------------------|------------|------------|
-| Author        | Swathi Anil        | swathi.anil@sanil.g3company.site | Drafted    | 2025-11-20 |
-| Reviewer      | Bobbi Plante       | bobbi.plante@mitt.g3company.site | Pending    |            |
-| Approver      | Marni Russell      | marni.russell@mitt.g3company.site| Pending    |            |
+| Version | Date       | Name               | Email                      | Role       |
+|--------|------------|--------------------|----------------------------|------------|
+| 1.0    | 2025-11-20 | Bobbi Plante       | bobbi.plante@mitt.ca       | Reviewer   |
+| 1.0    | 2025-11-20 | Marni Russell      | marni.russell@mitt.ca      | Approver   |
 
 ---
 
 ## Purpose
 
-This Standard Operating Procedure (SOP) defines the step-by-step process for setting up a virtual Linux server on VMware vSphere 7.0, configured specifically for testing web applications. 
+This Standard Operating Procedure (SOP) defines the standardized process for setting up a virtual Linux server on VMware vSphere 7.0, specifically configured for testing web applications. The objective is to ensure consistent, secure, and reproducible deployment of isolated test environments using CentOS Stream 9 with a LAMP stack (Linux, Apache, MySQL, PHP). This SOP supports rapid provisioning of development and QA servers while adhering to internal security and operational best practices.
+
+Expected outcomes include:
+- A fully functional, secure Linux-based web test server.
+- Verified network connectivity and service operation.
+- Complete documentation for audit, troubleshooting, and future maintenance.
+- Compliance with g3company’s IT infrastructure standards.
 
 ---
 
-## Scope
+## Scope/Objectives
 
 This SOP applies to:
 - System Administrators
 - DevOps Engineers
 - IT Support Staff
-- Development Teams requiring test servers
+- Development and QA Teams requiring non-production web application testing environments
 
-It covers the creation of a CentOS Stream 9 virtual machine with Apache, PHP, MySQL (LAMP stack), Git, and basic firewall configuration for secure access. This procedure assumes access to VMware vSphere 7.0 environment and administrative privileges.
+This procedure covers:
+1. Pre-creation planning and resource assessment.
+2. Creation and configuration of a virtual machine in VMware vSphere 7.0.
+3. Installation and post-installation setup of CentOS Stream 9.
+4. Deployment of essential software packages for web application testing (LAMP stack).
+5. Security hardening including firewall rules, SELinux, and removal of unnecessary services.
+6. Functional verification of web and database services.
+7. Documentation and knowledge transfer for ongoing management.
+
+This SOP does **not** apply to production systems, cloud-hosted instances (AWS, Azure), or environments outside the g3company on-premises vSphere infrastructure.
 
 ---
 
 ## Accountability Matrix
 
- Task                                | Responsible Party         | Emergency Contact       | Non-Emergency Contact     | Review/Approval       |
--------------------------------------|---------------------------|-------------------------|---------------------------|------------------------|
- Pre-creation Planning               | System Administrator      | On-call IT: 437-878-5117| IT Team Slack Channel     | IT Supervisor          |
- VM Creation & Configuration         | Virtualization Team       | On-call IT: 437-878-5117 | vmware-admin@g3company.site | IT Ops Manager           |
- OS Installation & LAMP Setup        | Systems Admin / DevOps    | On-call IT: 437-878-5117 | linux-team@g3company.site   | Senior Systems Engineer |
- Security & Firewall Configuration   | Security Officer (Optional)| Sec-Team-Pager          | security@g3company.site    | CISO Delegate            |
- Documentation & Handover            | Author / Knowledge Manager| N/A                     | docs@g3company.site          | Documentation Lead       |
+| Task/Steps                              | Responsible Person/Team     | Emergency Contact         | Non-Emergency Contact       | Review/Approval       |
+|-----------------------------------------|-----------------------------|---------------------------|-----------------------------|------------------------|
+| Pre-creation Planning and Assessment    | System Administrator        | On-call IT: 437-878-4117   | it-team@g3company.site      | IT Manager              |
+| Configuration of Virtual Machine        | Virtualization Team         | On-call IT: 437-878-4117   | vmware-admin@g3company.site | IT Ops Manager          |
+| Installation of Guest OS & LAMP Stack   | System Administrator        | On-call IT: 437-878-4117   | linux-team@g3company.site   | Senior Systems Engineer |
+| Post-creation Verification and Testing  | Quality Assurance Team      | QA-OnCall-Pager            | qa-team@g3company.site      | QA Manager              |
+| Documentation of Virtual Machine        | Documentation Lead / Author | N/A                        | docs@g3company.site         | Knowledge Manager       |
 
 ---
 
 ## Definitions
 
- Term                | Definition                                                                 |
----------------------|----------------------------------------------------------------------------|
- VM                  | Virtual Machine – a software-based simulation of a physical computer.       |
- vSphere             | VMware’s virtualization platform for managing virtual machines.            |
- LAMP Stack          | Linux, Apache, MySQL, PHP – a common open-source web application stack.    |
- ISO                 | Disk image file used to install an operating system.                       |
- SSH                 | Secure Shell – encrypted protocol for remote command-line login.           |
- NAT                 | Network Address Translation – method for IP address translation in networks.|
- SELinux             | Security-Enhanced Linux – kernel security module providing access control. |
+| Term                | Definition                                                                 |
+|---------------------|----------------------------------------------------------------------------|
+| VM                  | Virtual Machine – a software-based emulation of a physical computer.       |
+| vSphere             | VMware’s virtualization platform for managing virtual machines.            |
+| LAMP Stack          | Linux, Apache, MySQL, PHP – a common open-source web application stack.    |
+| ISO                 | Disk image file used to install an operating system.                       |
+| SSH                 | Secure Shell – encrypted protocol for remote command-line login.           |
+| NAT                 | Network Address Translation – method for IP address translation in networks.|
+| SELinux             | Security-Enhanced Linux – kernel security module providing access control. |
+| CMDB                | Configuration Management Database – system for tracking IT assets.         |
+| HTTP/HTTPS          | Hypertext Transfer Protocol(Secure) – protocols used for serving web content. |
+| DHCP                | Dynamic Host Configuration Protocol – assigns IP addresses automatically.  |
 
 ---
 
 ## Procedure Steps
 
-### Step 1: Pre-Creation Planning and Assessment
+### Step 1: Pre-creation Planning and Assessment
 
-#### 1.1 Define Requirements
-- **Purpose**: Host internal web application prototypes and conduct functional testing.
-- **Hostname**: `webtest01.sanil.g3company.site`
-- **IP Address**: Assigned via DHCP from VLAN 105 (Test Network), or static if required (`192.168.105.x`)
-- **OS Distro**: CentOS Stream 9 (x86_64)
-- **Resource Allocation**:
-  - vCPU: 2 cores
-  - RAM: 4 GB
-  - Storage: 40 GB thin-provisioned disk
-  - Network: Single NIC connected to "Test_Network_VLAN105"
+#### Step 1.1: Identify Purpose and Requirements
+- Determine the purpose: Hosting internal web application prototypes and conducting functional testing.
+- Define specifications:
+  - **Hostname**: `webtest01.internal.g3company.site`
+  - **IP Assignment**: DHCP from VLAN 105 (Test Network); static if required
+  - **OS Distro**: CentOS Stream 9 (x86_64)
+  - **vCPU**: 2 cores
+  - **RAM**: 4 GB
+  - **Storage**: 40 GB thin-provisioned disk
+  - **Network**: Connected to "Test_Network_VLAN105"
 
-#### 1.2 Verify Resource Availability
-- Log into vCenter Server and confirm sufficient CPU, memory, and datastore capacity on the target ESXi host.
-- Ensure the CentOS Stream 9 ISO is available in the content library or datastore.
+> ⚠️ These values are minimum recommendations; adjust based on application requirements.
 
-#### 1.3 Communicate with Stakeholders
-- Notify development team of expected setup time.
-- Confirm any special software or port requirements beyond standard LAMP stack.
+#### Step 1.2: Plan Resource Allocation
+- Log into vCenter Server and verify available CPU, memory, and datastore capacity.
+- Confirm that the target ESXi host has sufficient resources.
+- Ensure the `CentOS-Stream-9-x86_64-latest.iso` is available in the content library or datastore.
+
+#### Step 1.3: Communicate with Stakeholders
+- Notify development or QA team of expected setup timeline.
+- Confirm any special requirements such as specific ports, firewall rules, or third-party tools.
 
 ---
 
-### Step 2: Create and Configure the Virtual Machine
+### Step 2: Configuration of Virtual Machine
 
-#### 2.1 Access vSphere Client
-- Open VMware vSphere Client and log in using administrative credentials.
-- Navigate to **Hosts and Clusters** > select target cluster.
+#### Step 2.1: Access VMware vSphere Client
+- Open VMware vSphere Client and log in with administrative credentials.
+- Navigate to **Hosts and Clusters** > select the appropriate cluster.
 
-#### 2.2 Initiate VM Creation
+#### Step 2.2: Create New Virtual Machine
 - Right-click the cluster > **New Virtual Machine** > **Create a new virtual machine**.
 - Select compatibility: **ESXi 7.0 and later**.
 - Choose guest OS family: **Linux**, version: **CentOS 8 (64-bit)** (compatible with Stream 9).
 
-#### 2.3 Configure Hardware Settings
+#### Step 2.3: Configure Virtual Machine Settings
 - **Name**: `webtest01`
 - **Location**: `/Test-Servers/vApps`
 - **Storage**: Select primary datastore with thin provisioning.
 - **Disk Size**: 40 GB, mode: **Thin Provisioned**
-- **CD/DVD Drive**: Connect to ISO image → browse and select `CentOS-Stream-9-x86_64-latest.iso`
+- **CD/DVD Drive**: Connect to ISO → browse and select `CentOS-Stream-9-x86_64-latest.iso`
 - **Network Adapter**: Connected to **Test_Network_VLAN105**
 - **CPU**: 2 vCPUs
 - **Memory**: 4096 MB
-- Enable **Guest OS Customization** (optional for future automation)
+- Enable **Guest OS Customization** (optional for automation)
 
-> ⚠️ **Note**: Disable unnecessary devices like floppy drive and printer for security hardening.
+> ⚠️ Disable unnecessary devices like floppy drive, printer, and USB controllers for security hardening.
 
-#### 2.4 Finish and Power On
+#### Step 2.4: Finish and Power On
 - Click **Finish** to create the VM.
 - Once created, right-click the VM > **Power On**.
 
 ---
 
-### Step 3: Install CentOS Stream 9
+### Step 3: Installation of Guest OS
 
-#### 3.1 Boot from ISO
+#### Step 3.1: Attach Installation ISO
 - After powering on, open the console.
 - At boot menu, select **Install CentOS Stream 9**.
 
-#### 3.2 Perform Installation
+#### Step 3.2: Install Guest OS
 - **Language**: English (United States)
 - **Installation Destination**: Select disk > click **Done**
 - **Network & Hostname**:
-  - Set hostname: `webtest01.internal.mitt.ca`
+  - Set hostname: `webtest01.internal.g3company.site`
   - Turn ON Ethernet interface
-  - Assign IP (DHCP recommended; use static only if required)
-- **Root Password**: Set strong password (follow org policy). Do **not** enable root SSH login yet.
-- **User Creation**: Create user `devuser` with sudo privileges.
-- Begin installation.
+  - Assign IP via DHCP or set static if needed
+- **Root Password**: Set strong password per organizational policy.
+- **User Creation**: Create standard user `devuser` with sudo privileges.
+- Begin installation and wait for completion.
 
-#### 3.3 Complete Installation
-- Wait for installation to finish.
-- When prompted, remove CD-ROM and reboot.
-- Log in locally or via console after reboot.
-
+#### Step 3.3: Configure Networking
+- After reboot, confirm network connectivity:
+  ```bash
+  ip addr show
+  ping -c 4 google.com
+  ```
 ---
 
 ### Step 4: Post-Installation System Configuration
@@ -188,4 +207,8 @@ sudo mysql_secure_installation
 ```bash
 sudo dnf install php php-mysqlnd php-gd php-cli php-opcache -y
 ```
-
+### Step 6: Post-creation Verification and Testing
+#### 6.1: Confirm Services Are Running
+```
+systemctl is-active httpd mariadb
+```
