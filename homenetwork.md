@@ -46,7 +46,7 @@ My network operates as a **single flat subnet** with no VLAN segmentation. The B
   - Manual override on clients: `1.1.1.1` (Cloudflare) and `8.8.8.8` (Google)
 - **Security**: Built-in firewall enabled; no port forwarding or DMZ.
 
-![Logical Topology: Winnipeg Apartment Network](Network.png)
+![Logical Topology: Winnipeg Apartment Network](NETWORKDIAG.png)
 
 ### Device IP Assignments (Anonymized Examples)
 
