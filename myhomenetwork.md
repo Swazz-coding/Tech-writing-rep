@@ -127,4 +127,4 @@ Remote Management: Disabled
 ---
 ## 6. Secure Credential Storage
 
-All network credentials—including the Bell Giga Router admin password and Wi-Fi passphrases—are stored securely using **Bitwarden**, an open-source, end-to-end encrypted password manager. The Bitwarden vault is protected by a strong master password and two-factor authentication (via TOTP). Credentials are never saved in plaintext files, browser autofill, or written on paper. Router administrative access is restricted to the local network only, and remote management is disabled to reduce attack surface.
+All network credentials including the Bell Giga Router admin password and Wi-Fi passphrases are stored securely using **Bitwarden**, an open-source, end-to-end encrypted password manager. The Bitwarden vault is protected by a strong master password and two-factor authentication (via TOTP). Credentials are never saved in plaintext files, browser autofill, or written on paper. Router administrative access is restricted to the local network only, and remote management is disabled to reduce attack surface.
