@@ -8,6 +8,8 @@ This document details the physical and logical topology of my home network in a 
 
 The physical layout of my apartment network is designed for optimal Wi-Fi coverage and minimal cable clutter. All devices are located within a single room.
 
+
+
 ### Device Locations & Connections
 
 - **MTS Fiber ONT**: Mounted on the wall near the main electrical panel (left side of room).
@@ -15,7 +17,7 @@ The physical layout of my apartment network is designed for optimal Wi-Fi covera
 - **Wired Connection**: A **Cat 6 Ethernet cable** connects the router’s **LAN port 1** to the desktop computer.
 - **Wireless Devices**: Laptop, smartphone, and smart TV connect via dual-band Wi-Fi (2.4 GHz & 5 GHz).
 
-> 🖼️ See `physical-topology.png` for visual representation.
+![Physical Topology: GeorgeTown Apartment Network](Physical.png)
 
 ### Room Layout Summary
 | Location          | Devices                          | Connection Type      |
@@ -44,7 +46,7 @@ My network operates as a **single flat subnet** with no VLAN segmentation. The B
   - Manual override on clients: `1.1.1.1` (Cloudflare) and `8.8.8.8` (Google)
 - **Security**: Built-in firewall enabled; no port forwarding or DMZ.
 
-> 🖼️ See `logical-topology.png` for diagram.
+![Logical Topology: Winnipeg Apartment Network](Network.png)
 
 ### Device IP Assignments (Anonymized Examples)
 
