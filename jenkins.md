@@ -1,4 +1,4 @@
-# Standard Operating Process (SOP) Document
+# Automated Web Deployment Using Jenkins CI/CD Pipelines (SOP)
 
 ## Process Title  
 **End-to-End CI/CD Pipeline: Automating Website Deployment from GitHub to Apache Using Jenkins**
@@ -43,7 +43,7 @@ This document outlines a **fully implemented Continuous Integration/Continuous D
 ## 4. Scope & Objectives
 
 ### Scope
-- Applies to **Ubuntu-based virtual machines** (e.g., AWS EC2, VirtualBox, VMware).
+- Applies to **Ubuntu-based virtual machines**.
 - Covers: VM setup, Java & Jenkins installation, Git integration, Apache configuration, file permissions, and Jenkins job creation.
 - Uses **GitHub Personal Access Token (PAT)** for secure authentication.
 
@@ -142,7 +142,6 @@ To enable GitHub integration and Git operations, install the following plugins:
    - **Git** – Pull code from Git repositories  
    - **Git Client** – Enhanced Git support  
    - **GitHub** – Enables GitHub integration (e.g., status checks, webhooks)  
-   - *(Optional)* **Pipeline** – For future use with `Jenkinsfile` (Pipeline-as-Code)  
 
 3. Click **Install without restart** (or **Restart Jenkins when no jobs are running** if prompted).
 
@@ -153,9 +152,9 @@ To enable GitHub integration and Git operations, install the following plugins:
 #### 7.1 Create Repository
 - **Repository name**: `DevopsPrototyping`  
 - **Visibility**: Public (for simplicity during testing)  
-- **Initialize with README**: ❌ No
+- **Initialize with README**:  No
 
-> 🔗 Example URL after creation: `https://github.com/YOUR_USERNAME/DevopsPrototyping`
+> 🔗 Example URL after creation: `https://github.com/krismaedb/DevopsPrototyping`
 
 ---
 
@@ -190,7 +189,7 @@ cat > index.html << 'EOF'
   </style>
 </head>
 <body>
-  <h1>🚀 Success!</h1>
+  <h1> Success!</h1>
   <p>This website was automatically deployed using <strong>Jenkins CI/CD</strong> from GitHub!</p>
   <p>Every push triggers a build → copies files → updates live site instantly.</p>
   <div class="footer">
@@ -209,7 +208,7 @@ git init
 git add index.html
 git commit -m "Initial commit: Add beautiful landing page"
 git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/DevopsPrototyping.git
+git remote add origin https://github.com/krismaedb/DevopsPrototyping.git
 git push -u origin main
 ```
 
@@ -253,7 +252,7 @@ jenkins ALL=(ALL) NOPASSWD: ALL
 - Select **Git**  
 - **Repository URL**:  
   ```text
-  https://github.com/YOUR_USERNAME/DevopsPrototyping.git
+  https://github.com/krismaedb/DevopsPrototyping.git
   ```
 
 #### Credentials
@@ -261,7 +260,7 @@ jenkins ALL=(ALL) NOPASSWD: ALL
 1. Click **Add** next to **Credentials** → Choose **Jenkins**  
 2. In the popup, configure the following:  
    - **Kind**: `Username with password`  
-   - **Username**: `YOUR_USERNAME` (your GitHub username)  
+   - **Username**: `krismaedb` (your GitHub username)  
    - **Password**: Paste your **GitHub Personal Access Token (PAT)**  
    - **ID**: `github-pat`  
    - **Description**: `GitHub PAT for CI/CD`  
@@ -298,7 +297,7 @@ echo "Website is now live!"
 
 #### Final Test
 
-- Open a web browser and navigate to:  
+- Open a web browser and navigate to:  http://localhost
 
 
 #### Expected Result
@@ -332,7 +331,7 @@ You should see the following content displayed on the page:
 | 9 | Apache shows “Forbidden” or 403 error      | Permissions too restrictive                     | ```bash<br>sudo chmod -R 755 /var/www/html/<br>sudo chown -R jenkins:jenkins /var/www/html/<br>sudo systemctl restart apache2<br>``` |
 |10 | Job runs but website doesn’t update        | Files copied to wrong directory                 | Confirm Jenkins workspace name matches job name exactly<br>Use absolute path or `$WORKSPACE` variable |
 
-### Quick One-Liner Fixes (Run as Needed)
+### Quick One-Liner Fixes 
 ```bash
 # Full reset & fix permissions
 sudo systemctl restart jenkins apache2
