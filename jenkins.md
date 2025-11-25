@@ -312,7 +312,7 @@ You should see the following content displayed on the page:
 > ![Jenkins Build Success](image.jpg)
 
 > *Figure 2: Live Deployed Website*  
-> ![Live Website](image(7).png)
+> ![Live Website](image (7).png)
 
 >  **Note**: Replace `<your-vm-ip>` with the actual public or private IP address of your virtual machine. If testing locally on the VM, use `http://localhost`.
 
