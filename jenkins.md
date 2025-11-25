@@ -309,10 +309,10 @@ You should see the following content displayed on the page:
 > This website was automatically deployed using **Jenkins CI/CD** from GitHub!
 
 > *Figure 1: Jenkins Console Output (Success)*  
-> ![Jenkins Build Success](images/jenkins-success.png)
+> ![Jenkins Build Success](image.jpg)
 
 > *Figure 2: Live Deployed Website*  
-> ![Live Website](images/live-website.png)
+> ![Live Website](image(7).png)
 
 >  **Note**: Replace `<your-vm-ip>` with the actual public or private IP address of your virtual machine. If testing locally on the VM, use `http://localhost`.
 
