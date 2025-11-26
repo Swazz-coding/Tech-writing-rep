@@ -21,14 +21,14 @@
 ## Document Authors
 
 **Prepared By:**
-- **Kunwei** - Testing & Validation Support
+- **Kunwei Li ** - Testing & Validation Support
 - **Kristine Mae Bagsican** - Lead Implementation Engineer & Documentation Author
-- **Jaered** - Testing & Validation Support
-- **Swathi** - Testing & Validation Support
+- **Jaered Bacolod ** - Testing & Validation Support
+- **Swathi Anil** - Testing & Validation Support
 
 **Institution:** Manitoba Institute of Trades and Technology (M.I.T.T.)  
 **Course:** Network and Systems Administrator Diploma Program  
-**Instructor:** Felix
+**Instructor:** Jibing Liang
 
 ---
 
@@ -54,11 +54,11 @@
 
 | Role | Name | Signature | Date | Approved (Y/N) | Comments |
 |------|------|-----------|------|----------------|----------|
-| Group Member | Kunwei | _______________ | Nov 26, 2025 | Y | Verified testing procedures |
+| Group Member | Kunwei Li | _______________ | Nov 26, 2025 | Y | Verified testing procedures |
 | Lead Implementation Engineer | Kristine Mae Bagsican | _______________ | Nov 26, 2025 | Y | Complete setup and configuration |
-| Group Member | Jaered | _______________ | Nov 26, 2025 | Y | Verified testing procedures |
-| Group Member | Swathi | _______________ | Nov 26, 2025 | Y | Verified testing procedures |
-| Technical Reviewer | Felix | _______________ | Nov 26, 2025 | Pending | Instructor approval pending |
+| Group Member | Jaered Bacolod | _______________ | Nov 26, 2025 | Y | Verified testing procedures |
+| Group Member | Swathi Anil | _______________ | Nov 26, 2025 | Y | Verified testing procedures |
+| Technical Reviewer | Jibing Liang | _______________ | Nov 26, 2025 | Pending | Instructor approval pending |
 
 **Approval Status:** Ready for Final Review  
 **Next Review Date:** December 15, 2025
@@ -69,9 +69,9 @@
 
 | Version | Date | Author(s) | Changes Made | Impact |
 |---------|------|-----------|--------------|--------|
-| 0.1 | Nov 19, 2025 | Kristine | Initial draft with basic structure | N/A |
-| 0.5 | Nov 22, 2025 | Kristine | Complete installation and configuration steps | High |
-| 0.8 | Nov 24, 2025 | Kristine | Added troubleshooting section & screenshots | High |
+| 0.1 | Nov 19, 2025 | Kristine, Kunwei | Initial draft with basic structure | N/A |
+| 0.5 | Nov 22, 2025 | Kristine, Jaered | Complete installation and configuration steps | High |
+| 0.8 | Nov 24, 2025 | Kristine, Swathi | Added troubleshooting section & screenshots | High |
 | 1.0 | Nov 26, 2025 | Kristine, All Members | Final review, testing validation, and verification | Complete |
 
 **Change Management Process:**
@@ -316,7 +316,7 @@ This SOP assumes the following:
 - **C** = Consulted (provides input)  
 - **I** = Informed (kept updated)
 
-| Task / Activity | Kunwei | Kristine | Jaered | Swathi | Felix |
+| Task / Activity | Kunwei Li | Kristine | Jaered Bacolod | Swathi Anil | Jibing Liang |
 |-----------------|--------|----------|--------|--------|-------|
 | **1. Project Planning & Setup** |
 | Define project scope | C | A/R | C | C | I |
@@ -371,7 +371,7 @@ This SOP assumes the following:
 
 ### 5.1 Role Definitions
 
-**Kunwei - Team Member & Testing Support**
+**Kunwei Li - Team Member & Testing Support**
 - Assists with validation and testing procedures
 - Verifies build success and deployment functionality
 - Supports presentation preparation
@@ -384,12 +384,12 @@ This SOP assumes the following:
 - Lead documentation author
 - Primary troubleshooter and problem solver
 
-**Jaered - Team Member & Testing Support**
+**Jaered Bacolod - Team Member & Testing Support**
 - Assists with validation and testing procedures
 - Verifies build success and deployment functionality
 - Supports presentation preparation
 
-**Swathi - Team Member & Testing Support**
+**Swathi Anil - Team Member & Testing Support**
 - Assists with validation and testing procedures
 - Verifies build success and deployment functionality
 - Supports presentation preparation
@@ -826,7 +826,7 @@ cat > index.html << 'EOF'
     
     <div class="footer">
       <p><strong>Implemented by Kristine Mae Bagsican</strong></p>
-      <p>With testing support from: Kunwei - Jaered - Swathi</p>
+      <p>With testing support from: Kunwei Li - Jaered Bacolod - Swathi Anil</p>
       <p style="margin-top: 15px; font-size: 0.9rem;">
         Manitoba Institute of Trades and Technology (M.I.T.T.)<br>
         Network and Systems Administrator Program - 2025
@@ -1547,9 +1547,9 @@ This SOP successfully demonstrates:
 - **Kristine Mae Bagsican:** Complete end-to-end implementation including infrastructure setup, Jenkins configuration, GitHub integration, Apache installation, permissions management, job creation, and comprehensive documentation
 
 **Testing Support Team:**
-- **Kunwei:** Validation testing and verification
-- **Jaered:** Validation testing and verification
-- **Swathi:** Validation testing and verification
+- **Kunwei Li:** Validation testing and verification
+- **Jaered Bacolod:** Validation testing and verification
+- **Swathi Anil:** Validation testing and verification
 
 **Collaboration Approach:**
 - Single engineer implementation for consistency
@@ -1761,12 +1761,12 @@ All objectives met:
 - **Kristine Mae Bagsican** - Complete system implementation, configuration, and documentation
 
 **Testing & Validation Team:**
-- **Kunwei** - Testing support
-- **Jaered** - Testing support
-- **Swathi** - Testing support
+- **Kunwei Li** - Testing support
+- **Jaered Bacolod** - Testing support
+- **Swathi Anil** - Testing support
 
 **Special Thanks:**
-- **Felix** - Course Instructor, M.I.T.T.
+- **Jibing Liang** - Course Instructor, M.I.T.T.
 - Manitoba Institute of Trades and Technology (M.I.T.T.)
 - Network and Systems Administrator Program Faculty
 
@@ -1990,7 +1990,7 @@ Before submitting this SOP, verify:
 **Email:** maebagsican7@gmail.com  
 **Institution:** Manitoba Institute of Trades and Technology (M.I.T.T.)  
 **Program:** Network and Systems Administrator Diploma  
-**Course Instructor:** Felix
+**Course Instructor:** Jibing Liang
 
 **Project Repository:**  
 https://github.com/krismaedb/DevopsPrototyping
@@ -2002,7 +2002,7 @@ https://github.com/krismaedb/DevopsPrototyping
 **Project Status:** COMPLETE & READY FOR PRESENTATION
 
 **Implemented By:** Kristine Mae Bagsican (Lead Engineer)  
-**Testing Support:** Kunwei, Jaered, Swathi  
+**Testing Support:** Kunwei Li, Jaered Bacolod, Swathi Anil  
 **Date:** November 26, 2025  
 **Document ID:** SOP-JENKINS-WEBSITE-DEPLOY-001  
 **Version:** 1.0
