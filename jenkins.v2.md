@@ -21,9 +21,9 @@
 ## Document Authors
 
 **Prepared By:**
-- **Kunwei Li ** - Testing & Validation Support
+- **Kunwei Li** - Testing & Validation Support
 - **Kristine Mae Bagsican** - Lead Implementation Engineer & Documentation Author
-- **Jaered Bacolod ** - Testing & Validation Support
+- **Jaered Bacolod** - Testing & Validation Support
 - **Swathi Anil** - Testing & Validation Support
 
 **Institution:** Manitoba Institute of Trades and Technology (M.I.T.T.)  
