@@ -6,10 +6,10 @@
 **Document ID:** SOP-JENKINS-WEBSITE-DEPLOY-001  
 **Version:** 1.0  
 **Prepared By:**  
-- Kunwei  
-- Kristine
-- Jaered  
-- Swathi 
+- Kunwei Li 
+- Kristine Mae Bagsican Mae Bagsican 
+- Jaered Bacolod Bacolod 
+- Swathi Anil
 **Date:** November 26, 2025  
 
 ---
@@ -18,11 +18,11 @@
 
 | Role                | Name       | Signature | Date       | Approved (Y/N) |
 |---------------------|------------|-----------|------------|----------------|
-| Group Member        | Kunwei   |           |            |                |
-| Group Member        | Kristine |           |            |                |
-| Group Member        | Jaered  |           |            |                |
-| Group Member        | Swathi   |           |            |                |
-| Technical Reviewer  | Felix |     |            |                |
+| Group Member        | Kunwei Li  |           |            |                |
+| Group Member        | Kristine Mae Bagsican |           |            |                |
+| Group Member        | Jaered Bacolod  |           |            |                |
+| Group Member        | Swathi Anil  |           |            |                |
+| Technical Reviewer  | Jibing Liang |     |            |                |
 
 ---
 
@@ -30,7 +30,7 @@
 
 | Version | Date       | Author(s)               | Changes Made                                |
 |--------|------------|--------------------------|---------------------------------------------|
-| 1.0    | 2025-04-05 | Kristine     | Initial documentation of Jenkins CI/CD pipeline with Apache deployment |
+| 1.0    | 2025-04-05 | Kristine Mae Bagsican     | Initial documentation of Jenkins CI/CD pipeline with Apache deployment |
 
 ---
 
@@ -65,12 +65,12 @@ By completing this process, the team achieved:
 | Task                                      | Responsible Role     |
 |-------------------------------------------|----------------------|
 | VM provisioning & updates                 | All members          |
-| Java & Jenkins installation               | Kunwei, Kristine   |
-| Git & GitHub PAT setup                    | Kristine, Kunwei   |
-| HTML file creation & GitHub push           | Kristine           |
-| Apache installation & service config      | Jaered, Swathi    |
-| Jenkins job creation & testing            | Kristine,Swathi  |
-| File permissions (`chown`, `chmod`)       |Kunwei, Jaered  |
+| Java & Jenkins installation               | Kunwei Li, Kristine Mae Bagsican   |
+| Git & GitHub PAT setup                    | Kristine Mae Bagsican, Kunwei Li  |
+| HTML file creation & GitHub push           | Kristine Mae Bagsican           |
+| Apache installation & service config      | Jaered Bacolod, Swathi Anil   |
+| Jenkins job creation & testing            | Kristine Mae Bagsican,Swathi Anil |
+| File permissions (`chown`, `chmod`)       |Kunwei Li, Jaered Bacolod  |
 | Documentation writing & review            | All members          |
 
 ---
@@ -167,10 +167,10 @@ cat > index.html << 'EOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jenkins CI/CD Success!</title>
-  <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Thank You – Group 3 Demo</title>
+<style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
@@ -182,19 +182,78 @@ cat > index.html << 'EOF'
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       text-align: center;
+      padding: 20px;
     }
-    h1 { font-size: 4rem; margin-bottom: 20px; }
-    p { font-size: 1.8rem; max-width: 800px; }
-    .footer { margin-top: 50px; font-size: 1rem; opacity: 0.9; }
-  </style>
+ 
+    /* Animation for "Success!" */
+    @keyframes fadeInPop {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+ 
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      animation: fadeInPop 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      opacity: 0; /* Start hidden */
+    }
+ 
+    p {
+      font-size: 1.6rem;
+      max-width: 800px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeIn 1s ease-in 0.8s forwards;
+    }
+ 
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+ 
+    .group-members {
+      background: rgba(0, 0, 0, 0.15);
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+      font-size: 1.4rem;
+      opacity: 0;
+      animation: fadeIn 1s ease-in 1.2s forwards;
+    }
+ 
+    .footer {
+      margin-top: 30px;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+ 
+    @media (max-width: 600px) {
+      h1 { font-size: 2.5rem; }
+      p { font-size: 1.3rem; }
+      .group-members { font-size: 1.2rem; }
+    }
+</style>
 </head>
 <body>
-  <h1> Success!</h1>
-  <p>This website was automatically deployed using <strong>Jenkins CI/CD</strong> from GitHub!</p>
-  <p>Every push triggers a build → copies files → updates live site instantly.</p>
+<h1>Success!</h1>
+<p>This website was automatically deployed using <strong>Jenkins CI/CD</strong> from GitHub!</p>
+<p>Thank you for watching our Jenkins CI/CD pipeline demo.</p>
+<p>This presentation was created and delivered by <strong>Group 3</strong>.</p>
+<div class="group-members">
+<strong>Team Members:</strong><br />
+    Kunwei • Kristine • Jaered • Swathi
+</div>
+ 
   <div class="footer">
     Built with ❤️ using Jenkins + GitHub + Apache on Ubuntu
-  </div>
+</div>
 </body>
 </html>
 EOF
@@ -363,7 +422,7 @@ This pipeline serves as a **solid, production-ready foundation** for future enha
 **Project Status:** 100% Complete and Verified  
 
 **Prepared and Verified By:**  
-**Kunwei • Kristine • Jaered • Swathi**  
+**Kunwei Li• Kristine Mae Bagsican • Jaered Bacolod • Swathi**  
 
 **Date:** November 26, 2025  
 
